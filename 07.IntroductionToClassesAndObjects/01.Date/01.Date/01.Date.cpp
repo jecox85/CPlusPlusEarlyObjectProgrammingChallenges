@@ -23,5 +23,8 @@ int main()
 	Date date2(5, 24, 1985);
 	cout << date1.longDate() << endl;
 	cout << date2.longDate() << endl;
+	cout << date2.longDateDayFirst() << endl;
+	cout << date2.shortDate() << endl;
+
 	return 0;
 }

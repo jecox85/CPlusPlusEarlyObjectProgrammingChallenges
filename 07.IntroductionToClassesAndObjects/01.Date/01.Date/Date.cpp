@@ -13,11 +13,13 @@
 		reasonable values for month and day. The month should be between 1 and 12. The day
 		should be between 1 and the number of days in the selected month.
 	*/
+//default day should be 1/1/2001
 Date::Date() {
 	month = 1;
 	day = 1;
 	year = 2001;
 }
+//if any of the inputs are bad, default to 1/1/2001
 Date::Date(int m, int d, int y) {
 	if (validateMonth(m) && validateDay(m, d) && validateYear(y)) {
 		month = m;
@@ -76,7 +78,7 @@ std::string Date::getMonthString(int m) {
 	return returnString;
 }
 std::string Date::shortDate() {
-	return std::to_string(month) + " / " + std::to_string(day) + " / " + std::to_string(year % 1000);
+	return std::to_string(month) + " / " + std::to_string(day) + " / " + std::to_string(year % 100);
 }
 //15 March 2013
 std::string Date::longDateDayFirst() {
@@ -94,14 +96,14 @@ bool Date::validateMonth(int m) {
 		return false;
 }
 bool Date::validateDay(int m, int d) {
-	bool returnBool;
+	bool returnBool = false;
 	if (!validateMonth(m))
 		returnBool = false;
 	else if (d < 1 || d > 31)
 		returnBool = false;
 	//logic for 31 day months
 	else if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) {
-		if (d <= 1 && d <= 31)
+		if (d >= 1 && d <= 31)
 			returnBool = true;
 		else
 			returnBool = false;
